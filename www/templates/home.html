@@ -1,0 +1,43 @@
+<ion-view view-title="Dashboard">
+  <ion-header-bar class="bar-positive">
+    <div class="h1 title">Form Validation</div>
+  </ion-header-bar>
+  <ion-content class="padding">
+    <form name="myForm" novalidate>
+        <div class="list">
+            <label class="item item-input">
+                <span class="input-label">Username</span>
+                <input type="email" name="username" ng-model="username" ng-minlength="5" required>
+            </label>
+            <label class="item item-input">
+                <span class="input-label">Password</span>
+                <input type="text" name="password" ng-model="password" ng-minlength="6" required>
+            </label>
+            <label class="item item-input">
+                <span class="input-label">Number</span>
+                <input type="text" name="number" ng-model="mobile" ng-minlength="10" ng-maxlength="12" required ui-br-phone-number-mask>
+            </label>
+            <label class="item item-input">
+                <span class="input-label">Message</span>
+                <textarea type="text" name="message" ng-model="message" ng-minlength="10" ng-maxlength="30" required></textarea>
+            </label>
+        </div>
+        <div class="padding">
+            <p ng-show="myForm.username.$error.required">* Username is required</p>
+            <p ng-show="myForm.username.$invalid && !myForm.username.$pristine">* Username must be an email address</p>
+            <p ng-show="myForm.username.$error.minlength">* Username must be longer than 5 characters</p>
+            <p ng-show="myForm.password.$error.required">* Password is required</p>
+            <p ng-show="myForm.number.$error.required">* Mobile Number is required</p>
+            <p ng-show="myForm.message.$error.required">* Message is required</p>
+            <p ng-show="myForm.password.$error.minlength">* Password must be longer than 6 characters</p>
+            <p ng-show="myForm.number.$error.minlength">*Mobile Number must be minimum than 10 Numbers</p>
+            <p ng-show="myForm.message.$error.minlength">* Message must be longer than 10 Numbers</p>
+            <p ng-show="myForm.number.$error.maxlength">*Mobile Number must be longer than 12 Numbers</p>
+            <p ng-show="myForm.message.$error.maxlength">* Message must be longer than 30 Numbers</p>
+        </div>
+        <div class="padding">
+            <button type="button" class="button button-block button-positive" ng-disabled="myForm.$invalid" ng-click="submit(username)">Submit</button>
+        </div>
+    </form>
+  </ion-content>
+</ion-view>
